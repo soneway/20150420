@@ -193,7 +193,7 @@ $hx: (h1: 1.45em);
         margin-top: -$h / 2;
         background-image: url(../images/part1/cycle.png);
         @include mx_transform(scale3d(2, 2, 1));
-        @include mx_animation(spinner_rotate 1s ease $item_duration infinite);
+        @include mx_animation(spinner_rotate 1s ease infinite);
     }
 
     .ball
