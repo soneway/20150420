@@ -82,31 +82,32 @@
     }
 
     /**
-     * 获取matchesSelector函数
+     * matchesSelector函数
      * @param {Node} el 元素
-     * @returns {Function} matchesSelector
+     * @param {string} sel 选择器
+     * @returns {boolean} 元素是否符合sel
      * @ignore
      */
-    var getMatSel = (function () {
+    var matchesSelector = (function () {
         var bodyEl = document.body;
         if (bodyEl.matchesSelector) {
-            return function (el) {
-                return el.matchesSelector;
+            return function (el, sel) {
+                return el.matchesSelector(sel);
             };
         }
         if (bodyEl.webkitMatchesSelector) {
-            return function (el) {
-                return el.webkitMatchesSelector;
+            return function (el, sel) {
+                return el.webkitMatchesSelector(sel);
             };
         }
         if (bodyEl.msMatchesSelector) {
-            return function (el) {
-                return el.msMatchesSelector;
+            return function (el, sel) {
+                return el.msMatchesSelector(sel);
             };
         }
         if (bodyEl.mozMatchesSelector) {
-            return function (el) {
-                return el.mozMatchesSelector;
+            return function (el, sel) {
+                return el.mozMatchesSelector(sel);
             };
         }
     })();
@@ -315,7 +316,7 @@
         //确定按钮点击
         document.addEventListener('click', function (evt) {
             var target = evt.target;
-            if (getMatSel(target).call(target, '#customalert-btnok')) {
+            if (matchesSelector(target, '#customalert-btnok')) {
                 removeClass(customalertEl, 'visible');
             }
         }, false);
@@ -346,7 +347,7 @@
         //a标签touch
         document.addEventListener('touchstart', function (evt) {
             var target = evt.target;
-            if (getMatSel(target).call(target, 'a')) {
+            if (matchesSelector(target, 'a')) {
                 addClass(target, 'focus');
             }
         }, false);
@@ -361,7 +362,7 @@
         //预约按钮点击
         document.addEventListener('click', function (evt) {
             var target = evt.target;
-            if (getMatSel(target).call(target, '#btn_ok')) {
+            if (matchesSelector(target, '#btn_ok')) {
                 alert('恭喜您抢得先机，排队<b>2348</b>位', '预约成功');
             }
         }, false);
@@ -371,7 +372,7 @@
         var audioEl = document.getElementById('audio');
         document.addEventListener('click', function (evt) {
             var target = evt.target;
-            if (getMatSel(target).call(target, '.msg')) {
+            if (matchesSelector(target, '.msg')) {
                 audioEl.src = 'audio/a.wav';
                 audioEl.play();
                 addClass(target, 'clicked');
