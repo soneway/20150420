@@ -181,6 +181,15 @@ $hx: (h1: 1.45em);
 
     .cycle
     {
+        $w: 360px;
+        $h: 360px;
+
+        width: $w;
+        height: $h;
+        left: 50%;
+        top: 50%;
+        margin-left: -$w / 2;
+        margin-top: -$h / 2;
         background-image: url(../images/part1/cycle.png);
         @include mx_transform(scale3d(2, 2, 1));
     }
