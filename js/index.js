@@ -353,7 +353,7 @@
         }, false);
         document.addEventListener('touchend', function (evt) {
             var target = evt.target;
-            if (getMatSel(target).call(target, 'a')) {
+            if (matchesSelector(target, 'a')) {
                 removeClass(target, 'focus');
             }
         }, false);
