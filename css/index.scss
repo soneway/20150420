@@ -113,7 +113,8 @@ $hx: (h1: 1.45em);
         &:before
         {
             content: '';
-            @include mx_plt($left: calc(50% + 3px));
+            @include mx_plt($left: 50%);
+            margin-left: 3px;
             width: 1px;
             height: 100%;
             background: rgba(255, 255, 255, 0.5);
@@ -131,14 +132,14 @@ $hx: (h1: 1.45em);
             font-size: 40px;
             line-height: 26px;
 
-            @include mx_plb($left: calc(50% + 3px), $bottom: $b);
+            @include mx_plb($left: 50%, $bottom: $b);
             width: $w;
             height: $w;
             text-align: center;
             border: 2px solid rgba(255, 255, 255, 0.5);
             background: #222;
             border-radius: $w;
-            margin-left: -$w / 2;
+            margin-left: -$w / 2 + 3px;
             @include mx_animation(updown 1s ease infinite);
         }
 
@@ -243,9 +244,9 @@ $hx: (h1: 1.45em);
     .point
     {
         $w: 20px;
-        @include mx_plt($left: calc(50% + 3.5px), $top: $t);
+        @include mx_plt($left: 50%, $top: $t);
         margin-top: 195px;
-        margin-left: -$w / 2;
+        margin-left: -$w / 2 + 3.5px;
         width: $w;
         height: $w;
         background: #d88c9e;
