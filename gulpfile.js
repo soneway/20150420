@@ -13,24 +13,32 @@ var gulp = require('gulp');
 //});
 
 
-//编译css
+//编译sass,压缩css
 var sass = require('gulp-sass');
-gulp.task('css', function () {
-    gulp.src('css/index.scss')
+var minifyCss = require('gulp-minify-css');
+gulp.task('sass', function () {
+    gulp.src('css/css.scss')
+        //编译
         .pipe(sass())
+        .pipe(gulp.dest('out'))
+        //压缩
+        .pipe(rename({suffix: '.min'}))
+        .pipe(minifyCss())
         .pipe(gulp.dest('out'));
 });
 
 
-//合并，压缩文件js
+//合并,压缩文件js
 var concat = require('gulp-concat');
 var uglify = require('gulp-uglify');
 var rename = require('gulp-rename');
 gulp.task('js', function () {
     gulp.src('js/*.js')
-        .pipe(concat('all.js'))
+        //合并
+        .pipe(concat('js.js'))
         .pipe(gulp.dest('out'))
-        .pipe(rename('all.min.js'))
+        //压缩
+        .pipe(rename({suffix: '.min'}))
         .pipe(uglify())
         .pipe(gulp.dest('out'));
 });
@@ -40,7 +48,7 @@ gulp.task('js', function () {
 gulp.task('default', function () {
     //监听文件变化
     gulp.watch(['css/**'], function () {
-        gulp.run('css');
+        gulp.run('sass');
     });
     gulp.watch(['js/*.js'], function () {
         gulp.run('js');
